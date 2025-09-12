@@ -1,22 +1,104 @@
+---
+import "@/styles/starwind.css";
+import { Button } from "@/components/starwind/button";
+
+const {
+  title = "Rief Productions — Web, AI, Audio, Design",
+  description = "Rief Productions LLC builds modern websites and agentic AI workflows, produces and edits audio, and delivers design, content, and project oversight.",
+} = Astro.props;
+
+const year = new Date().getFullYear();
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-background text-foreground">
+    <header
+      class="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/70"
+    >
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="flex h-16 items-center justify-between">
+          <a href="/" class="font-semibold tracking-tight text-lg"
+            >Rief Productions</a
+          >
+          <nav class="hidden md:flex items-center gap-6 text-sm">
+            <a
+              href="#services"
+              class="hover:text-primary starwind-transition-colors">Services</a
+            >
+            <a
+              href="#process"
+              class="hover:text-primary starwind-transition-colors">Process</a
+            >
+            <a
+              href="#about"
+              class="hover:text-primary starwind-transition-colors">About</a
+            >
+            <a
+              href="#contact"
+              class="hover:text-primary starwind-transition-colors">Contact</a
+            >
+          </nav>
+          <div class="hidden md:block">
+            <Button variant="primary" href="#contact">Start a Project</Button>
+          </div>
+        </div>
+      </div>
+    </header>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-border">
+      <div
+        class="mx-auto max-w-6xl px-4 sm:px-6 py-10 grid gap-8 md:grid-cols-3"
+      >
+        <div>
+          <div class="font-semibold">Rief Productions LLC</div>
+          <p class="text-sm text-muted-foreground mt-2">
+            Web technology, agentic AI workflows, music & audio, and design.
+          </p>
+        </div>
+        <div>
+          <div class="text-sm font-medium mb-2">Explore</div>
+          <ul class="text-sm space-y-1">
+            <li><a class="hover:text-primary" href="#services">Services</a></li>
+            <li><a class="hover:text-primary" href="#process">Process</a></li>
+            <li><a class="hover:text-primary" href="#about">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="text-sm font-medium mb-2">Contact</div>
+          <ul class="text-sm space-y-1">
+            <li>
+              <a class="hover:text-primary" href="#contact">Start a project</a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary"
+                href="mailto:hello@riefproductions.com"
+                >hello@riefproductions.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="border-t border-border py-4 text-center text-xs text-muted-foreground"
+      >
+        © {year} Rief Productions LLC. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>
