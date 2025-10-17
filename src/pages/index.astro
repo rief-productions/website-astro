@@ -1,8 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Button } from "@/components/starwind/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/starwind/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/starwind/accordion";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/starwind/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/starwind/accordion";
+import logo from "@/assets/logo.svg";
 ---
 
 <Layout
@@ -11,14 +23,24 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 >
   <!-- Hero -->
   <section class="relative overflow-hidden">
-    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-primary/5 to-transparent"></div>
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 py-20 md:py-28">
-      <div class="max-w-3xl">
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-b from-primary/5 to-transparent"
+    >
+    </div>
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-20 md:py-28 relative">
+      <img
+        src={logo.src}
+        alt="Rief Productions Logo"
+        class="w-48 h-auto mx-auto mb-6 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:w-96 lg:w-[28rem] md:opacity-30 md:pointer-events-none md:mx-0 md:mb-0"
+      />
+      <div class="max-w-3xl relative z-10">
         <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
           Web, AI, Audio, and Design — Delivered
         </h1>
         <p class="mt-5 text-lg text-muted-foreground">
-          Rief Productions crafts websites and agentic AI workflows, produces and edits music and audio, and designs and curates content. We oversee complex projects end‑to‑end so you can focus on results.
+          Rief Productions crafts websites and agentic AI workflows, produces
+          and edits music and audio, and designs and curates content. We oversee
+          complex projects end‑to‑end so you can focus on results.
         </p>
         <div class="mt-8 flex items-center gap-3">
           <Button variant="primary" href="#contact">Start a Project</Button>
@@ -31,18 +53,25 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
   <!-- Services -->
   <section id="services" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
     <div class="max-w-2xl">
-      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">What We Do</h2>
-      <p class="mt-2 text-muted-foreground">Full‑stack capabilities across web technology, AI agents, audio, and design.</p>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">
+        What We Do
+      </h2>
+      <p class="mt-2 text-muted-foreground">
+        Full‑stack capabilities across web technology, AI agents, audio, and
+        design.
+      </p>
     </div>
     <div class="mt-8 grid gap-6 sm:grid-cols-2">
       <Card>
         <CardHeader>
           <CardTitle>Web Technology & AI Agents</CardTitle>
-          <CardDescription>Modern websites and agentic workflows.</CardDescription>
+          <CardDescription
+            >Modern websites and agentic workflows.</CardDescription
+          >
         </CardHeader>
         <CardContent>
           <ul class="list-disc pl-5 space-y-1 text-sm">
-            <li>Astro/React sites with performance first</li>
+            <li>Modern websites with performance first</li>
             <li>Agentic automations and MCP‑powered tooling</li>
             <li>Content pipelines and CMS integration</li>
           </ul>
@@ -51,7 +80,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
       <Card>
         <CardHeader>
           <CardTitle>Music Production & Audio</CardTitle>
-          <CardDescription>Recording, editing, and engineering.</CardDescription>
+          <CardDescription>Recording, editing, and engineering.</CardDescription
+          >
         </CardHeader>
         <CardContent>
           <ul class="list-disc pl-5 space-y-1 text-sm">
@@ -93,26 +123,40 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
   <!-- Process -->
   <section id="process" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
     <div class="max-w-2xl">
-      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">How We Work</h2>
-      <p class="mt-2 text-muted-foreground">A clear path from discovery to delivery.</p>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">
+        How We Work
+      </h2>
+      <p class="mt-2 text-muted-foreground">
+        A clear path from discovery to delivery.
+      </p>
     </div>
     <div class="mt-6">
       <Accordion>
         <AccordionItem value="d">
           <AccordionTrigger>1) Discover</AccordionTrigger>
-          <AccordionContent>We clarify goals, constraints, and success metrics. Quick audit of content, code, and assets.</AccordionContent>
+          <AccordionContent
+            >We clarify goals, constraints, and success metrics. Quick audit of
+            content, code, and assets.</AccordionContent
+          >
         </AccordionItem>
         <AccordionItem value="p">
           <AccordionTrigger>2) Plan</AccordionTrigger>
-          <AccordionContent>We propose scope, timelines, and milestones; align on stack and hand‑offs.</AccordionContent>
+          <AccordionContent
+            >We propose scope, timelines, and milestones; align on stack and
+            hand‑offs.</AccordionContent
+          >
         </AccordionItem>
         <AccordionItem value="b">
           <AccordionTrigger>3) Build</AccordionTrigger>
-          <AccordionContent>We implement, iterate in the open, and validate with stakeholders.</AccordionContent>
+          <AccordionContent
+            >We implement, iterate in the open, and validate with stakeholders.</AccordionContent
+          >
         </AccordionItem>
         <AccordionItem value="l">
           <AccordionTrigger>4) Launch</AccordionTrigger>
-          <AccordionContent>We ship, monitor, and hand off documentation and training.</AccordionContent>
+          <AccordionContent
+            >We ship, monitor, and hand off documentation and training.</AccordionContent
+          >
         </AccordionItem>
       </Accordion>
     </div>
@@ -122,8 +166,14 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
   <section id="about" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
     <div class="grid gap-8 md:grid-cols-2 items-center">
       <div>
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">Rief Productions</h2>
-        <p class="mt-2 text-muted-foreground">We pair craftsmanship with pragmatic execution. Whether it’s a fast Astro site, an agentic workflow for your team, a polished master, or a coherent brand system—we deliver outcomes, not just artifacts.</p>
+        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">
+          Rief Productions
+        </h2>
+        <p class="mt-2 text-muted-foreground">
+          We pair craftsmanship with pragmatic execution. Whether it’s a fast
+          Astro site, an agentic workflow for your team, a polished master, or a
+          coherent brand system—we deliver outcomes, not just artifacts.
+        </p>
         <div class="mt-6">
           <Button variant="primary" href="#contact">Let’s Collaborate</Button>
         </div>
@@ -131,10 +181,18 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
       <div class="rounded-xl border border-border p-6 bg-card">
         <h3 class="font-medium">Highlights</h3>
         <ul class="mt-3 grid grid-cols-2 gap-2 text-sm">
-          <li class="rounded-md bg-accent/50 px-3 py-2">Performance‑first builds</li>
-          <li class="rounded-md bg-accent/50 px-3 py-2">Accessible by default</li>
-          <li class="rounded-md bg-accent/50 px-3 py-2">Maintainable systems</li>
-          <li class="rounded-md bg-accent/50 px-3 py-2">Transparent delivery</li>
+          <li class="rounded-md bg-accent/50 px-3 py-2">
+            Performance‑first builds
+          </li>
+          <li class="rounded-md bg-accent/50 px-3 py-2">
+            Accessible by default
+          </li>
+          <li class="rounded-md bg-accent/50 px-3 py-2">
+            Maintainable systems
+          </li>
+          <li class="rounded-md bg-accent/50 px-3 py-2">
+            Transparent delivery
+          </li>
         </ul>
       </div>
     </div>
@@ -143,13 +201,21 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
   <!-- Contact -->
   <section id="contact" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
     <div class="max-w-2xl">
-      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">Start a Project</h2>
-      <p class="mt-2 text-muted-foreground">Tell us about your goals and timeline. We’ll respond quickly with next steps.</p>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">
+        Start a Project
+      </h2>
+      <p class="mt-2 text-muted-foreground">
+        Tell us about your goals and timeline. We’ll respond quickly with next
+        steps.
+      </p>
     </div>
     <div class="mt-6 flex items-center gap-3">
-      <Button variant="primary" href="mailto:hello@riefproductions.com?subject=Project%20Inquiry">Email Us</Button>
+      <Button
+        variant="primary"
+        href="mailto:hello@riefproductions.com?subject=Project%20Inquiry"
+        >Email Us</Button
+      >
       <Button variant="secondary" href="#services">Review Services</Button>
     </div>
   </section>
-
 </Layout>

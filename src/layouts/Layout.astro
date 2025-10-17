@@ -1,6 +1,8 @@
 ---
 import "@/styles/starwind.css";
 import { Button } from "@/components/starwind/button";
+import { ClientRouter } from "astro:transitions";
+import logo from "@/assets/logo.svg";
 
 const {
   title = "Rief Productions — Web, AI, Audio, Design",
@@ -15,13 +17,26 @@ const year = new Date().getFullYear();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content={new URL(logo.src, Astro.site || Astro.url).toString()}
+    />
+
+    <ClientRouter />
   </head>
   <body class="min-h-screen flex flex-col bg-background text-foreground">
     <header
@@ -29,9 +44,21 @@ const year = new Date().getFullYear();
     >
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="flex h-16 items-center justify-between">
-          <a href="/" class="font-semibold tracking-tight text-lg"
-            >Rief Productions</a
+          <a
+            href="/"
+            class="flex items-center gap-3 hover:opacity-80 starwind-transition-opacity"
           >
+            <div
+              class="bg-neutral-950 rounded-lg p-1 flex items-center justify-center"
+              transition:name="header-logo"
+              transition:persist
+            >
+              <img src={logo.src} alt="Rief Productions" class="h-7 w-auto" />
+            </div>
+            <span class="font-semibold tracking-tight text-lg"
+              >Rief Productions</span
+            >
+          </a>
           <nav class="hidden md:flex items-center gap-6 text-sm">
             <a
               href="#services"
@@ -66,7 +93,16 @@ const year = new Date().getFullYear();
         class="mx-auto max-w-6xl px-4 sm:px-6 py-10 grid gap-8 md:grid-cols-3"
       >
         <div>
-          <div class="font-semibold">Rief Productions LLC</div>
+          <div class="flex items-center gap-3 mb-2">
+            <div
+              class="bg-neutral-950 rounded-lg p-1.5 flex items-center justify-center"
+              transition:name="footer-logo"
+              transition:persist
+            >
+              <img src={logo.src} alt="Rief Productions" class="h-6 w-auto" />
+            </div>
+            <div class="font-semibold">Rief Productions LLC</div>
+          </div>
           <p class="text-sm text-muted-foreground mt-2">
             Web technology, agentic AI workflows, music & audio, and design.
           </p>
@@ -89,7 +125,8 @@ const year = new Date().getFullYear();
               <a
                 class="hover:text-primary"
                 href="mailto:hello@riefproductions.com"
-                >hello@riefproductions.com</a>
+                >hello@riefproductions.com</a
+              >
             </li>
           </ul>
         </div>
