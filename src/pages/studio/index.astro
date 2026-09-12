@@ -1,0 +1,76 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Button } from "@/components/starwind/button";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CapabilityCard from "@/components/CapabilityCard.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import { additionalCapabilities } from "@/lib/capabilities";
+import { mailto } from "@/lib/site";
+---
+
+<Layout
+  title="Additional Capabilities | Rief Productions"
+  description="Audio production, design, and editorial support from Rief Productions, alongside its software engineering and technology consulting work."
+>
+  <section class="border-b border-border">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+        Additional capabilities
+      </p>
+      <h1 class="mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">
+        Beyond software engineering
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-muted-foreground">
+        Rief Productions is primarily a software engineering practice. Alongside
+        that work, it also provides audio production, design, and editorial
+        support — usually for the same projects and teams.
+      </p>
+      <div class="mt-8">
+        <Button variant="outline" href="/services/">
+          See engineering services
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <SectionHeader
+      eyebrow="Creative"
+      title="Other things I do well"
+      description="Useful when a project needs more than engineering, but not the focus of the practice."
+    />
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        additionalCapabilities.map((capability) => (
+          <CapabilityCard
+            title={capability.title}
+            summary={capability.summary}
+            items={capability.items}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-muted/40">
+    <div class="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 md:py-20">
+      <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">
+        Need something built?
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-muted-foreground">
+        Software engineering is where I do my best work. If a project also needs
+        audio, design, or editorial help, that can be part of the engagement.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <Button
+          variant="primary"
+          href={mailto("Project inquiry")}
+        >
+          Start a conversation
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <ContactSection />
+</Layout>

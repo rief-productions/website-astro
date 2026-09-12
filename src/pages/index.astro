@@ -1,222 +1,207 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { Button } from "@/components/starwind/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/starwind/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/starwind/accordion";
-import { Image } from "astro:assets";
-import logo from "@/assets/logo.svg";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CapabilityCard from "@/components/CapabilityCard.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import TechStack from "@/components/TechStack.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import { capabilities } from "@/lib/capabilities";
+import { featuredProjects } from "@/lib/projects";
+import { site, mailto } from "@/lib/site";
+
+const approach = [
+  {
+    title: "End-to-end ownership",
+    body: "From requirements and architecture through implementation, deployment, and the parts that keep it running.",
+  },
+  {
+    title: "Requirements into systems",
+    body: "Translating what the business needs into data models, interfaces, and services that hold up over time.",
+  },
+  {
+    title: "Pragmatic architecture",
+    body: "The right amount of structure for the problem. No over-engineering, and no shortcuts that become tomorrow's outage.",
+  },
+  {
+    title: "Built to maintain",
+    body: "Readable code, clear boundaries, and documentation that lets the next engineer move without guessing.",
+  },
+  {
+    title: "Performance and reliability",
+    body: "Fast interfaces, sensible caching, and systems designed to fail gracefully rather than dramatically.",
+  },
+  {
+    title: "Effective with existing teams",
+    body: "Comfortable working inside an established codebase, process, and team — not just greenfield projects.",
+  },
+];
 ---
 
-<Layout
-  title="Rief Productions — Web Technology, AI Agents, Audio, Design"
-  description="Rief Productions builds modern websites and agentic AI workflows, produces and edits audio, and delivers design, content curation, and project oversight."
->
+<Layout>
   <!-- Hero -->
-  <section class="relative overflow-hidden">
+  <section class="relative overflow-hidden border-b border-border">
     <div
-      class="absolute inset-0 -z-10 bg-gradient-to-b from-primary/5 to-transparent"
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 -z-10"
+      style="background-image: radial-gradient(60rem 40rem at 85% -20%, rgba(46, 251, 253, 0.16), transparent 70%), radial-gradient(circle at 1px 1px, rgba(10, 10, 10, 0.06) 1px, transparent 0); background-size: auto, 1.5rem 1.5rem;"
     >
     </div>
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-20 md:py-28 relative">
-      <Image
-        src={logo}
-        alt="Rief Productions Logo"
-        class="w-48 h-auto mx-auto mb-6 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:w-96 lg:w-[28rem] md:opacity-30 md:pointer-events-none md:mx-0 md:mb-0"
-      />
-      <div class="max-w-3xl relative z-10">
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
-          Web, AI, Audio, and Design — Delivered
-        </h1>
-        <p class="mt-5 text-lg text-muted-foreground">
-          Rief Productions crafts websites and agentic AI workflows, produces
-          and edits music and audio, and designs and curates content. We oversee
-          complex projects end‑to‑end so you can focus on results.
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 md:py-28">
+      <div class="max-w-3xl">
+        <p
+          class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700"
+        >
+          Independent software engineering consultancy
         </p>
-        <div class="mt-8 flex items-center gap-3">
-          <Button variant="primary" href="#contact">Start a Project</Button>
-          <Button variant="secondary" href="#services">See Services</Button>
+        <h1
+          class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl"
+        >
+          Software engineering for modern products and systems.
+        </h1>
+        <p class="mt-6 text-lg text-muted-foreground">
+          I'm Andrew Riefenstahl, a senior software engineer. Through Rief
+          Productions I design and build full-stack applications, backend systems
+          and APIs, AI-enabled workflows, automation, and the cloud
+          infrastructure that runs them — for teams that need reliable software
+          built well.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <Button
+            variant="primary"
+            size="lg"
+            href={mailto("Software engineering inquiry")}
+          >
+            Discuss a project
+          </Button>
+          <Button variant="outline" size="lg" href="/work/">
+            View selected work
+          </Button>
         </div>
+        <p class="mt-6 text-sm text-muted-foreground">{site.availability}</p>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
-    <div class="max-w-2xl">
-      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">
-        What We Do
-      </h2>
-      <p class="mt-2 text-muted-foreground">
-        Full‑stack capabilities across web technology, AI agents, audio, and
-        design.
-      </p>
-    </div>
-    <div class="mt-8 grid gap-6 sm:grid-cols-2">
-      <Card>
-        <CardHeader>
-          <CardTitle>Web Technology & AI Agents</CardTitle>
-          <CardDescription
-            >Modern websites and agentic workflows.</CardDescription
-          >
-        </CardHeader>
-        <CardContent>
-          <ul class="list-disc pl-5 space-y-1 text-sm">
-            <li>Modern websites with performance first</li>
-            <li>Agentic automations and MCP‑powered tooling</li>
-            <li>Content pipelines and CMS integration</li>
-          </ul>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Music Production & Audio</CardTitle>
-          <CardDescription>Recording, editing, and engineering.</CardDescription
-          >
-        </CardHeader>
-        <CardContent>
-          <ul class="list-disc pl-5 space-y-1 text-sm">
-            <li>Mixing, mastering, podcast cleanup</li>
-            <li>Sound design and asset libraries</li>
-            <li>Voiceover capture and editing</li>
-          </ul>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Graphic Design</CardTitle>
-          <CardDescription>Brand, UI, and visual systems.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul class="list-disc pl-5 space-y-1 text-sm">
-            <li>Brand identity and style guides</li>
-            <li>Web/UI assets and iconography</li>
-            <li>Marketing collateral and layouts</li>
-          </ul>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Content & Project Oversight</CardTitle>
-          <CardDescription>From concept to launch.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul class="list-disc pl-5 space-y-1 text-sm">
-            <li>Content curation and editorial workflows</li>
-            <li>Roadmapping and vendor coordination</li>
-            <li>QA, accessibility, and performance checks</li>
-          </ul>
-        </CardContent>
-      </Card>
+  <!-- Capabilities -->
+  <section id="capabilities" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <SectionHeader
+      eyebrow="Capabilities"
+      title="What I build"
+      description="Engineering work grouped by the problems it solves — not a technology list."
+    />
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        capabilities.map((capability) => (
+          <CapabilityCard
+            title={capability.title}
+            summary={capability.summary}
+            items={capability.items}
+          />
+        ))
+      }
     </div>
   </section>
 
-  <!-- Process -->
-  <section id="process" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
-    <div class="max-w-2xl">
-      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">
-        How We Work
-      </h2>
-      <p class="mt-2 text-muted-foreground">
-        A clear path from discovery to delivery.
-      </p>
-    </div>
-    <div class="mt-6">
-      <Accordion>
-        <AccordionItem value="d">
-          <AccordionTrigger>1) Discover</AccordionTrigger>
-          <AccordionContent
-            >We clarify goals, constraints, and success metrics. Quick audit of
-            content, code, and assets.</AccordionContent
-          >
-        </AccordionItem>
-        <AccordionItem value="p">
-          <AccordionTrigger>2) Plan</AccordionTrigger>
-          <AccordionContent
-            >We propose scope, timelines, and milestones; align on stack and
-            hand‑offs.</AccordionContent
-          >
-        </AccordionItem>
-        <AccordionItem value="b">
-          <AccordionTrigger>3) Build</AccordionTrigger>
-          <AccordionContent
-            >We implement, iterate in the open, and validate with stakeholders.</AccordionContent
-          >
-        </AccordionItem>
-        <AccordionItem value="l">
-          <AccordionTrigger>4) Launch</AccordionTrigger>
-          <AccordionContent
-            >We ship, monitor, and hand off documentation and training.</AccordionContent
-          >
-        </AccordionItem>
-      </Accordion>
+  <!-- Selected work -->
+  <section id="work" class="border-t border-border bg-muted/40">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeader
+          eyebrow="Selected work"
+          title="Systems I have shipped"
+          description="A sample of production platforms, backend systems, and open-source tooling."
+        />
+        <Button variant="outline" href="/work/">All engineering work</Button>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          featuredProjects.map((project) => (
+            <ProjectCard project={project} />
+          ))
+        }
+      </div>
     </div>
   </section>
 
-  <!-- About / CTA -->
-  <section id="about" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
-    <div class="grid gap-8 md:grid-cols-2 items-center">
+  <!-- How I work -->
+  <section id="approach" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <SectionHeader
+      eyebrow="How I work"
+      title="Senior ownership, pragmatic execution"
+      description="A direct way of working that fits how real teams build software."
+    />
+    <div class="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+      {
+        approach.map((item) => (
+          <div>
+            <h3 class="text-base font-semibold">{item.title}</h3>
+            <p class="mt-2 text-sm text-muted-foreground">{item.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Technology -->
+  <section id="technology" class="border-t border-border bg-muted/40">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <SectionHeader
+        eyebrow="Technology"
+        title="What I build with"
+        description="Tools I reach for when they are the right fit — drawn from hands-on project work."
+      />
+      <TechStack />
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <div class="grid items-start gap-10 md:grid-cols-2 md:gap-16">
       <div>
-        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">
-          Rief Productions
-        </h2>
-        <p class="mt-2 text-muted-foreground">
-          We pair craftsmanship with pragmatic execution. Whether it’s a fast
-          Astro site, an agentic workflow for your team, a polished master, or a
-          coherent brand system—we deliver outcomes, not just artifacts.
+        <SectionHeader
+          eyebrow="About"
+          title="Rief Productions"
+          description="Rief Productions LLC is the independent software engineering and technology consultancy of Andrew Riefenstahl."
+        />
+        <p class="mt-5 text-muted-foreground">
+          I bring senior-level experience across application architecture,
+          backend systems, full-stack engineering, cloud infrastructure,
+          AI-enabled applications, and performance and reliability work. I work
+          directly with teams as a contract engineer, technical consultant, or
+          embedded senior contributor.
+        </p>
+        <p class="mt-4 text-muted-foreground">
+          I have delivered production software for enterprises, nonprofits, and an
+          AI agent platform, and I co-founded a worker-owned technology
+          cooperative.
         </p>
         <div class="mt-6">
-          <Button variant="primary" href="#contact">Let’s Collaborate</Button>
+          <Button variant="ghost" href="/about/">More about my background</Button>
         </div>
       </div>
-      <div class="rounded-xl border border-border p-6 bg-card">
-        <h3 class="font-medium">Highlights</h3>
-        <ul class="mt-3 grid grid-cols-2 gap-2 text-sm">
-          <li class="rounded-md bg-accent/50 px-3 py-2">
-            Performance‑first builds
-          </li>
-          <li class="rounded-md bg-accent/50 px-3 py-2">
-            Accessible by default
-          </li>
-          <li class="rounded-md bg-accent/50 px-3 py-2">
-            Maintainable systems
-          </li>
-          <li class="rounded-md bg-accent/50 px-3 py-2">
-            Transparent delivery
-          </li>
+
+      <div class="rounded-2xl border border-border bg-card p-6">
+        <h3 class="text-sm font-semibold">Highlights</h3>
+        <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+          {
+            [
+              "Senior full-stack engineering",
+              "Backend & API architecture",
+              "AI applications and agents",
+              "Cloud infrastructure",
+              "Performance & reliability",
+              "Technical leadership",
+            ].map((item) => (
+              <li class="rounded-lg bg-accent/40 px-3 py-2 text-sm text-foreground">
+                {item}
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
-    <div class="max-w-2xl">
-      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">
-        Start a Project
-      </h2>
-      <p class="mt-2 text-muted-foreground">
-        Tell us about your goals and timeline. We’ll respond quickly with next
-        steps.
-      </p>
-    </div>
-    <div class="mt-6 flex items-center gap-3">
-      <Button
-        variant="primary"
-        href="mailto:hello@riefproductions.com?subject=Project%20Inquiry"
-        >Email Us</Button
-      >
-      <Button variant="secondary" href="#services">Review Services</Button>
-    </div>
-  </section>
+  <ContactSection />
 </Layout>

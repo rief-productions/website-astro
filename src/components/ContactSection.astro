@@ -1,0 +1,50 @@
+---
+import { Button } from "@/components/starwind/button";
+import { site, founder, mailto } from "@/lib/site";
+---
+
+<section id="contact" class="border-t border-border bg-muted/40">
+  <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <div class="grid gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:gap-16">
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">
+          Start a conversation
+        </h2>
+        <p class="mt-4 max-w-xl text-muted-foreground">
+          Contract engineering, technical consulting, architecture work, or a
+          full-time senior software engineering role — tell me what you are
+          working on and I will tell you whether and how I can help.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <Button variant="primary" href={mailto("Software engineering inquiry")}>
+            Email {site.email}
+          </Button>
+          <Button variant="outline" href={founder.linkedin} target="_blank" rel="noopener">
+            Connect on LinkedIn
+          </Button>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-border bg-background p-6">
+        <h3 class="text-sm font-semibold">Good reasons to reach out</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-muted-foreground">
+          {
+            [
+              "Contract or consulting engineering",
+              "Application or system architecture",
+              "Backend, API, or integrations work",
+              "AI and automation projects",
+              "Modernizing or migrating a legacy system",
+              "Full-time senior engineering roles",
+            ].map((item) => (
+              <li class="flex gap-2.5">
+                <span aria-hidden="true" class="mt-2 h-1 w-1 shrink-0 rounded-full bg-cyan-600" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

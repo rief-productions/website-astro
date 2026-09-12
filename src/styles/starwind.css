@@ -88,7 +88,8 @@
     --error-foreground: var(--color-neutral-50);
     --border: var(--color-neutral-200);
     --input: var(--color-neutral-200);
-    --outline: #2efbfd;
+    /* Darker cyan for legible focus rings on light backgrounds. */
+    --outline: #0e7490;
     --radius: 0.5rem;
   }
 
@@ -127,11 +128,33 @@
   *:focus-visible {
     @apply outline-outline;
   }
+  /* Keep focus rings on the accessible outline token even when a component
+     sets its own outline color (e.g. the primary button), since neon cyan is
+     not legible against light surfaces. */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline-color: var(--outline) !important;
+  }
   html {
     @apply bg-background text-foreground scheme-light dark:scheme-dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
   button {
     @apply cursor-pointer;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 

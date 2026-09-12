@@ -1,0 +1,36 @@
+---
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/starwind/card";
+
+interface Props {
+  title: string;
+  summary: string;
+  items: string[];
+}
+
+const { title, summary, items } = Astro.props;
+---
+
+<Card class="flex flex-col">
+  <CardHeader class="p-6">
+    <CardTitle class="text-xl">{title}</CardTitle>
+    <CardDescription class="text-sm">{summary}</CardDescription>
+  </CardHeader>
+  <CardContent class="p-6 pt-0">
+    <ul class="space-y-2 text-sm text-muted-foreground">
+      {
+        items.map((item) => (
+          <li class="flex gap-2.5">
+            <span aria-hidden="true" class="mt-2 h-1 w-1 shrink-0 rounded-full bg-cyan-600" />
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </CardContent>
+</Card>

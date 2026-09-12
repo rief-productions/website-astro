@@ -1,0 +1,167 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Button } from "@/components/starwind/button";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CapabilityCard from "@/components/CapabilityCard.astro";
+import TechStack from "@/components/TechStack.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import { capabilities } from "@/lib/capabilities";
+import { mailto } from "@/lib/site";
+
+const engagements = [
+  {
+    title: "Contract engineering",
+    body: "Hands-on delivery on a product or platform. Full-time or part-time, working directly with your team and codebase.",
+  },
+  {
+    title: "Technical consulting",
+    body: "Architecture and technical direction: system design, code and infrastructure review, and a practical path forward.",
+  },
+  {
+    title: "Modernization",
+    body: "Migrations, legacy modernization, and performance work delivered incrementally rather than as a big-bang rewrite.",
+  },
+  {
+    title: "AI & automation",
+    body: "LLM applications, RAG, agents, and workflow automation wired into real processes — with human oversight where it matters.",
+  },
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Scope the problem",
+    body: "Clarify goals, constraints, and what success looks like. Review the existing code, systems, and data.",
+  },
+  {
+    step: "02",
+    title: "Design the approach",
+    body: "Propose an architecture and delivery plan with clear milestones. Align on stack, ownership, and hand-offs.",
+  },
+  {
+    step: "03",
+    title: "Build and ship",
+    body: "Implement in small, reviewable increments and validate with the people who use the software.",
+  },
+  {
+    step: "04",
+    title: "Hand off and support",
+    body: "Leave behind documentation, tests, and context so the team can run and extend the system confidently.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "Software engineering services",
+  itemListElement: capabilities.map((capability) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: capability.title,
+      description: capability.summary,
+    },
+  })),
+};
+---
+
+<Layout
+  title="Services | Software Engineering & Technology Consulting"
+  description="Software engineering services: full-stack application development, backend and API systems, AI and automation, architecture, migrations, and consulting."
+  structuredData={structuredData}
+>
+  <section class="border-b border-border">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+        Services
+      </p>
+      <h1 class="mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">
+        Engineering services
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-muted-foreground">
+        Rief Productions takes on design, delivery, and architecture work across
+        the stack — from a focused API or integration to an application built and
+        shipped end to end.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <Button variant="primary" href={mailto("Software engineering inquiry")}>
+          Discuss a project
+        </Button>
+        <Button variant="outline" href="/work/">See engineering work</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <SectionHeader
+      eyebrow="Capabilities"
+      title="What I can take on"
+      description="Four areas of engineering work, from application delivery to the systems and architecture underneath."
+    />
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        capabilities.map((capability) => (
+          <CapabilityCard
+            title={capability.title}
+            summary={capability.summary}
+            items={capability.items}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-muted/40">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <SectionHeader
+        eyebrow="Engagements"
+        title="Ways to work together"
+        description="Flexible engagement types that fit the problem and the team."
+      />
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          engagements.map((engagement) => (
+            <div class="rounded-2xl border border-border bg-background p-6">
+              <h3 class="text-base font-semibold">{engagement.title}</h3>
+              <p class="mt-2 text-sm text-muted-foreground">
+                {engagement.body}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <SectionHeader
+      eyebrow="Process"
+      title="How an engagement runs"
+      description="A direct process built around shipping working software."
+    />
+    <ol class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        process.map((item) => (
+          <li>
+            <div class="text-sm font-semibold text-cyan-700">{item.step}</div>
+            <h3 class="mt-2 text-base font-semibold">{item.title}</h3>
+            <p class="mt-2 text-sm text-muted-foreground">{item.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="border-t border-border bg-muted/40">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <SectionHeader
+        eyebrow="Technology"
+        title="Tools I work with"
+        description="Chosen for fit and maintainability, not novelty."
+      />
+      <TechStack />
+    </div>
+  </section>
+
+  <ContactSection />
+</Layout>

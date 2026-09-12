@@ -1,0 +1,80 @@
+---
+import type { Project } from "@/lib/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const blocks = [
+  { label: "Problem", body: project.problem },
+  { label: "Approach", body: project.approach },
+  { label: "Outcome", body: project.outcome },
+];
+---
+
+<article
+  id={project.slug}
+  class="border-t border-border py-12 first:border-t-0 first:pt-0 md:py-16"
+>
+  <div class="grid gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.5fr)] md:gap-12">
+    <div>
+      <p class="text-sm text-muted-foreground">{project.year}</p>
+      <h3 class="mt-1 text-2xl font-semibold tracking-tight">{project.name}</h3>
+      <p class="mt-1 text-muted-foreground">{project.subtitle}</p>
+
+      <ul class="mt-5 flex flex-wrap gap-2">
+        {
+          project.tags.map((tag) => (
+            <li class="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground">
+              {tag}
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        project.url && (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener"
+            class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-cyan-700 hover:text-cyan-800 starwind-transition-colors"
+          >
+            Visit project
+            <span aria-hidden="true">↗</span>
+            <span class="sr-only"> {project.name} (opens in a new tab)</span>
+          </a>
+        )
+      }
+    </div>
+
+    <div class="space-y-6">
+      {
+        blocks.map((block) => (
+          <div>
+            <h4 class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+              {block.label}
+            </h4>
+            <p class="mt-2 text-muted-foreground">{block.body}</p>
+          </div>
+        ))
+      }
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+          Systems
+        </h4>
+        <ul class="mt-2 flex flex-wrap gap-2">
+          {
+            project.systems.map((system) => (
+              <li class="rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-foreground">
+                {system}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</article>

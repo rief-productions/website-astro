@@ -1,6 +1,11 @@
-- Get logo
-- Create Open Graph image
-- Set up search engine optimization metadata
-- Define colours
-- Add real email address
-- That should be good for now
+- [x] Get logo
+- [x] Create Open Graph image
+- [x] Set up search engine optimization metadata
+- [x] Define colours
+- [x] Add real email address
+
+Follow-ups (optional):
+- [ ] Confirm Netlify deploy + custom domain after merge
+- [ ] Add per-project case-study pages if more depth is wanted
+- [ ] Add privacy-friendly analytics if desired
+- [ ] Consider a theme toggle if dark mode is wanted (tokens already exist)
