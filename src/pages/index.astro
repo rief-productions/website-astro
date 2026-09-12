@@ -8,7 +8,7 @@ import TechStack from "@/components/TechStack.astro";
 import ContactSection from "@/components/ContactSection.astro";
 import { capabilities } from "@/lib/capabilities";
 import { featuredProjects } from "@/lib/projects";
-import { site, mailto } from "@/lib/site";
+import { site, founder, mailto } from "@/lib/site";
 
 const approach = [
   {
@@ -60,10 +60,14 @@ const approach = [
           Software engineering for modern products and systems.
         </h1>
         <p class="mt-6 text-lg text-muted-foreground">
-          I'm Andrew Riefenstahl, a senior software engineer. Through Rief
-          Productions I design and build full-stack applications, backend systems
-          and APIs, AI-enabled workflows, automation, and the cloud
-          infrastructure that runs them.
+          Rief Productions is an independent software engineering consultancy
+          founded by <a
+            class="text-accent-text hover:text-accent-text/80 starwind-transition-colors"
+            href={founder.url}
+            target="_blank"
+            rel="me noopener">{founder.name}</a>. We design and build full-stack
+          applications, backend systems and APIs, AI-enabled workflows,
+          automation, and the cloud infrastructure that runs them.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-3">
           <Button
@@ -86,8 +90,8 @@ const approach = [
   <section id="capabilities" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
     <SectionHeader
       eyebrow="Capabilities"
-      title="What I build"
-      description="The engineering problems I take on most often."
+      title="What we build"
+      description="The engineering problems we take on most often."
     />
     <div class="mt-10 grid gap-6 md:grid-cols-2">
       {
@@ -108,7 +112,7 @@ const approach = [
       <div class="flex flex-wrap items-end justify-between gap-6">
         <SectionHeader
           eyebrow="Selected work"
-          title="Systems I have shipped"
+          title="Systems we have shipped"
           description="A sample of production platforms, backend systems, and open-source tooling."
         />
         <Button variant="outline" href="/work/">All engineering work</Button>
@@ -123,10 +127,10 @@ const approach = [
     </div>
   </section>
 
-  <!-- How I work -->
+  <!-- How we work -->
   <section id="approach" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
     <SectionHeader
-      eyebrow="How I work"
+      eyebrow="How we work"
       title="Senior ownership, pragmatic execution"
     />
     <div class="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
@@ -146,8 +150,8 @@ const approach = [
     <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
       <SectionHeader
         eyebrow="Technology"
-        title="What I build with"
-        description="Tools I have used on shipped projects."
+        title="What we build with"
+        description="Tools we have used on shipped projects."
       />
       <TechStack />
     </div>
@@ -160,15 +164,15 @@ const approach = [
         <SectionHeader
           eyebrow="About"
           title="Rief Productions"
-          description="I work directly with teams as a contract engineer, technical consultant, or embedded senior contributor."
+          description="We work directly with teams as contract engineers, technical consultants, or embedded senior contributors."
         />
         <p class="mt-5 text-muted-foreground">
-          I have delivered production software for enterprises, nonprofits, and an
-          AI agent platform, and I co-founded a worker-owned technology
-          cooperative.
+          Rief Productions has delivered production software for enterprises,
+          nonprofits, and an AI agent platform, and its founder co-founded a
+          worker-owned technology cooperative.
         </p>
         <div class="mt-6">
-          <Button variant="ghost" href="/about/">More about my background</Button>
+          <Button variant="ghost" href="/about/">More about the practice</Button>
         </div>
       </div>
 

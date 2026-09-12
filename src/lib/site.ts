@@ -11,8 +11,7 @@ export const site = {
   analyticsId: "G-9MV375RHQC",
   email: "hello@riefproductions.com",
   location: "United States",
-  availability:
-    "Available for contract and consulting engagements, and open to select full-time senior software engineering roles.",
+  availability: "Available for contract and consulting engagements.",
 } as const;
 
 export const founder = {
