@@ -21,7 +21,7 @@ const blocks = [
   <div class="grid gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.5fr)] md:gap-12">
     <div>
       <p class="text-sm text-muted-foreground">{project.year}</p>
-      <h3 class="mt-1 text-2xl font-semibold tracking-tight">{project.name}</h3>
+      <h2 class="mt-1 text-2xl font-semibold tracking-tight">{project.name}</h2>
       <p class="mt-1 text-muted-foreground">{project.subtitle}</p>
 
       <ul class="mt-5 flex flex-wrap gap-2">
@@ -54,17 +54,17 @@ const blocks = [
       {
         blocks.map((block) => (
           <div>
-            <h4 class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
               {block.label}
-            </h4>
+            </h3>
             <p class="mt-2 text-muted-foreground">{block.body}</p>
           </div>
         ))
       }
       <div>
-        <h4 class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+        <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
           Systems
-        </h4>
+        </h3>
         <ul class="mt-2 flex flex-wrap gap-2">
           {
             project.systems.map((system) => (

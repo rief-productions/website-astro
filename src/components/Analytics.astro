@@ -14,10 +14,12 @@ const { id = (import.meta.env.PUBLIC_GA_ID as string | undefined) ?? site.analyt
 const enabled = Boolean(id) && import.meta.env.PROD;
 
 const src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
-// ClientRouter does client-side navigation, so send page views manually on
-// every `astro:page-load` (which fires on the initial load and after each
-// navigation) and disable the default single page view from `config`.
-const config = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}',{send_page_view:false});document.addEventListener('astro:page-load',function(){gtag('event','page_view',{page_location:location.href,page_path:location.pathname});});`;
+// ClientRouter does client-side navigation, so page views are sent manually on
+// every `astro:page-load`, which the docs confirm fires on the initial load and
+// after each navigation (https://docs.astro.build/en/guides/view-transitions/).
+// Inline scripts can re-execute during navigation, so the setup is guarded on
+// `window` (which is preserved) to avoid duplicate config/listeners.
+const config = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());window.__rpGa4=window.__rpGa4||{config:false,pageview:false};if(!window.__rpGa4.config){window.__rpGa4.config=true;gtag('config','${id}',{send_page_view:false});}if(!window.__rpGa4.pageview){window.__rpGa4.pageview=true;document.addEventListener('astro:page-load',function(){gtag('event','page_view',{page_location:location.href,page_path:location.pathname});});}`;
 ---
 
 {
