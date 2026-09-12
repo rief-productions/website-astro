@@ -2,6 +2,7 @@
 import "@/styles/starwind.css";
 import { Button } from "@/components/starwind/button";
 import MobileNav from "@/components/MobileNav.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
 import Analytics from "@/components/Analytics.astro";
 import { ClientRouter } from "astro:transitions";
 import { Image } from "astro:assets";
@@ -94,7 +95,28 @@ const structuredDataItems = [
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content="#fafafa" />
+
+    <!-- Apply the saved or system theme before first paint to avoid a flash. -->
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem("theme");
+          const dark = stored
+            ? stored === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const root = document.documentElement;
+          root.classList.toggle("dark", dark);
+          root.style.colorScheme = dark ? "dark" : "light";
+          const meta = document.querySelector('meta[name="theme-color"]');
+          if (meta)
+            meta.setAttribute("content", dark ? "#0a0a0a" : "#fafafa");
+        } catch {
+          // Storage/matchMedia unavailable; fall back to the default theme.
+        }
+      })();
+    </script>
+
 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -147,7 +169,7 @@ const structuredDataItems = [
             aria-label={`${site.name} home`}
           >
             <span
-              class="bg-neutral-950 rounded-lg p-1 flex items-center justify-center"
+              class="bg-neutral-950 dark:bg-neutral-800 rounded-lg p-1 flex items-center justify-center"
               transition:name="header-logo"
               transition:persist
             >
@@ -187,11 +209,13 @@ const structuredDataItems = [
             }
           </nav>
 
-          <div class="hidden md:block">
-            <Button variant="primary" href="/#contact">Discuss a project</Button>
+          <div class="flex items-center gap-2">
+            <ThemeToggle />
+            <div class="hidden md:block">
+              <Button variant="primary" href="/#contact">Discuss a project</Button>
+            </div>
+            <MobileNav items={[...nav]} />
           </div>
-
-          <MobileNav items={[...nav]} />
         </div>
       </div>
     </header>
@@ -207,7 +231,7 @@ const structuredDataItems = [
         <div>
           <div class="flex items-center gap-3 mb-3">
             <span
-              class="bg-neutral-950 rounded-lg p-1.5 flex items-center justify-center"
+              class="bg-neutral-950 dark:bg-neutral-800 rounded-lg p-1.5 flex items-center justify-center"
               transition:name="footer-logo"
               transition:persist
             >

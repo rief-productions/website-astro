@@ -1,0 +1,123 @@
+---
+import { Button } from "@/components/starwind/button";
+---
+
+<Button
+  variant="ghost"
+  size="icon"
+  type="button"
+  data-theme-toggle
+  aria-label="Toggle color theme"
+  aria-pressed="false"
+  class="text-muted-foreground hover:text-foreground [&_svg]:size-5"
+>
+  {/* Shown in light mode: switch to dark. */}
+  <svg
+    class="dark:hidden"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+  {/* Shown in dark mode: switch to light. */}
+  <svg
+    class="hidden dark:block"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="4" />
+    <path
+      d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+    />
+  </svg>
+</Button>
+
+<script>
+  const THEME_KEY = "theme";
+
+  const storedTheme = () => {
+    try {
+      return localStorage.getItem(THEME_KEY);
+    } catch {
+      return null;
+    }
+  };
+
+  const systemPrefersDark = () =>
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const isDark = () => {
+    const stored = storedTheme();
+    return stored ? stored === "dark" : systemPrefersDark();
+  };
+
+  const applyTheme = () => {
+    const dark = isDark();
+    const root = document.documentElement;
+    root.classList.toggle("dark", dark);
+    root.style.colorScheme = dark ? "dark" : "light";
+
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", dark ? "#0a0a0a" : "#fafafa");
+
+    document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+      button.setAttribute("aria-pressed", String(dark));
+      button.setAttribute(
+        "aria-label",
+        dark ? "Switch to light theme" : "Switch to dark theme",
+      );
+    });
+  };
+
+  const toggleTheme = () => {
+    const next = document.documentElement.classList.contains("dark")
+      ? "light"
+      : "dark";
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch {
+      // Storage can be unavailable (private mode); theme still applies.
+    }
+    applyTheme();
+  };
+
+  const initTheme = () => {
+    const win = window as unknown as { __themeToggleBound?: boolean };
+    if (!win.__themeToggleBound) {
+      win.__themeToggleBound = true;
+
+      // Delegated so the control keeps working after the header re-renders
+      // during view transitions.
+      document.addEventListener("click", (event) => {
+        const target =
+          event.target instanceof Element
+            ? event.target.closest("[data-theme-toggle]")
+            : null;
+        if (target) toggleTheme();
+      });
+
+      // Only follow the OS while the visitor has not made an explicit choice.
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+          if (!storedTheme()) applyTheme();
+        });
+    }
+
+    applyTheme();
+  };
+
+  initTheme();
+  document.addEventListener("astro:after-swap", applyTheme);
+  document.addEventListener("astro:page-load", applyTheme);
+</script>

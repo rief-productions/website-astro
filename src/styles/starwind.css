@@ -41,6 +41,7 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
   --color-success: var(--success);
@@ -78,6 +79,10 @@
     --muted-foreground: var(--color-neutral-600);
     --accent: #2efbfd;
     --accent-foreground: var(--color-neutral-950);
+    /* Legible cyan for text/icons/links on light surfaces. */
+    --accent-text: #0e7490;
+    --hero-glow: 0.16;
+    --hero-dot: rgba(10, 10, 10, 0.06);
     --info: var(--color-sky-300);
     --info-foreground: var(--color-sky-950);
     --success: var(--color-green-300);
@@ -96,9 +101,10 @@
   .dark {
     --background: var(--color-neutral-950);
     --foreground: var(--color-neutral-50);
-    --card: var(--color-neutral-950);
+    /* Slight elevation so cards read against the near-black background. */
+    --card: var(--color-neutral-900);
     --card-foreground: var(--color-neutral-50);
-    --popover: var(--color-neutral-950);
+    --popover: var(--color-neutral-900);
     --popover-foreground: var(--color-neutral-50);
     --primary: #2efbfd;
     --primary-foreground: var(--color-neutral-950);
@@ -108,6 +114,10 @@
     --muted-foreground: var(--color-neutral-400);
     --accent: #2efbfd;
     --accent-foreground: var(--color-neutral-950);
+    /* Brighter cyan reads better on dark surfaces. */
+    --accent-text: #67e8f9;
+    --hero-glow: 0.12;
+    --hero-dot: rgba(255, 255, 255, 0.06);
     --info: var(--color-sky-300);
     --info-foreground: var(--color-sky-950);
     --success: var(--color-green-300);

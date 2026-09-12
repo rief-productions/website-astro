@@ -40,7 +40,7 @@ const blocks = [
             href={project.url}
             target="_blank"
             rel="noopener"
-            class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-cyan-700 hover:text-cyan-800 starwind-transition-colors"
+            class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent-text hover:text-accent-text/80 starwind-transition-colors"
           >
             Visit project
             <span aria-hidden="true">↗</span>
@@ -54,7 +54,7 @@ const blocks = [
       {
         blocks.map((block) => (
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-accent-text">
               {block.label}
             </h3>
             <p class="mt-2 text-muted-foreground">{block.body}</p>
@@ -62,7 +62,7 @@ const blocks = [
         ))
       }
       <div>
-        <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+        <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-accent-text">
           Systems
         </h3>
         <ul class="mt-2 flex flex-wrap gap-2">

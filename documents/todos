@@ -7,5 +7,5 @@
 Follow-ups (optional):
 - [ ] Confirm Netlify deploy + custom domain after merge
 - [ ] Add per-project case-study pages if more depth is wanted
-- [ ] Add privacy-friendly analytics if desired
-- [ ] Consider a theme toggle if dark mode is wanted (tokens already exist)
+- [x] Add analytics (Google Analytics 4)
+- [x] Add light/dark theme with toggle

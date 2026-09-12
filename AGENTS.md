@@ -23,6 +23,10 @@ This repo powers the rief-productions site using Astro 5, React 19, TailwindCSS 
 - Netlify, static output. `netlify.toml` sets the build command, Node version, immutable caching for `/_astro/*`, and baseline security headers.
 - `@astrojs/sitemap` emits `sitemap-index.xml`; `public/robots.txt` references it.
 
+## Theming
+- Light/dark tokens live in `src/styles/starwind.css` (`:root` and `.dark`). Prefer semantic tokens (`text-accent-text`, `bg-card`, `border-border`, `text-muted-foreground`) over raw palette colors so both modes work.
+- `ThemeToggle.astro` owns the control, persistence, and OS-preference handling. A small `is:inline` script in `Layout.astro` applies the saved/system theme before first paint, and the toggle re-applies on `astro:after-swap` because view transitions replace root attributes.
+
 ## Component Library (Starwind)
 - Docs: https://starwind.dev/docs/getting-started/
 - Config: `starwind.config.json` controls the catalog and target dir (`componentDir: "src/components"`). Generated primitives live in `src/components/starwind/`.
