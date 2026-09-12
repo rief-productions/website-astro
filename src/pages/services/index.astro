@@ -36,7 +36,7 @@ const process = [
   {
     step: "02",
     title: "Design the approach",
-    body: "Propose an architecture and delivery plan with clear milestones. Align on stack, ownership, and hand-offs.",
+    body: "Propose an architecture and delivery plan with clear milestones. Align on stack and ownership.",
   },
   {
     step: "03",
@@ -80,8 +80,7 @@ const structuredData = {
       </h1>
       <p class="mt-4 max-w-2xl text-lg text-muted-foreground">
         Rief Productions takes on design, delivery, and architecture work across
-        the stack — from a focused API or integration to an application built and
-        shipped end to end.
+        the stack — from a focused API or integration to a full application.
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-3">
         <Button variant="primary" href={mailto("Software engineering inquiry")}>
@@ -93,11 +92,7 @@ const structuredData = {
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-    <SectionHeader
-      eyebrow="Capabilities"
-      title="What I can take on"
-      description="Four areas of engineering work, from application delivery to the systems and architecture underneath."
-    />
+    <SectionHeader eyebrow="Capabilities" title="What I can take on" />
     <div class="mt-10 grid gap-6 md:grid-cols-2">
       {
         capabilities.map((capability) => (
@@ -113,11 +108,7 @@ const structuredData = {
 
   <section class="border-t border-border bg-muted/40">
     <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-      <SectionHeader
-        eyebrow="Engagements"
-        title="Ways to work together"
-        description="Flexible engagement types that fit the problem and the team."
-      />
+      <SectionHeader eyebrow="Engagements" title="Ways to work together" />
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {
           engagements.map((engagement) => (
@@ -134,11 +125,7 @@ const structuredData = {
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-    <SectionHeader
-      eyebrow="Process"
-      title="How an engagement runs"
-      description="A direct process built around shipping working software."
-    />
+    <SectionHeader eyebrow="Process" title="How an engagement runs" />
     <ol class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       {
         process.map((item) => (
@@ -157,7 +144,7 @@ const structuredData = {
       <SectionHeader
         eyebrow="Technology"
         title="Tools I work with"
-        description="Chosen for fit and maintainability, not novelty."
+        description="Chosen for fit and maintainability."
       />
       <TechStack />
     </div>

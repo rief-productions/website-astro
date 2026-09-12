@@ -10,8 +10,7 @@ export const capabilities: Capability[] = [
   {
     id: "application-engineering",
     title: "Application Engineering",
-    summary:
-      "Full-stack products, internal platforms, and the interfaces people actually depend on.",
+    summary: "Products, platforms, and the interfaces people use every day.",
     items: [
       "Full-stack web applications",
       "Internal platforms and dashboards",
@@ -92,7 +91,7 @@ export const additionalCapabilities: Capability[] = [
   {
     id: "content",
     title: "Content & Editorial",
-    summary: "Structured content and editorial workflows.",
+    summary: "Content operations and editorial support.",
     items: [
       "Content pipelines and CMS integration",
       "Editorial workflows and curation",

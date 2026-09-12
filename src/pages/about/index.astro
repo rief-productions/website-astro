@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import { Button } from "@/components/starwind/button";
 import SectionHeader from "@/components/SectionHeader.astro";
 import ContactSection from "@/components/ContactSection.astro";
-import { site, founder, mailto } from "@/lib/site";
+import { founder, mailto } from "@/lib/site";
 
 const principles = [
   {
@@ -44,29 +44,24 @@ const principles = [
     <div class="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] md:gap-16">
       <div class="space-y-5 text-muted-foreground">
         <p>
-          Rief Productions LLC is the independent software engineering and
-          technology consultancy of Andrew Riefenstahl. I work with organizations
-          that need reliable software built or fixed — as a contract engineer, a
-          technical consultant, or an embedded senior contributor.
+          Rief Productions LLC is the independent software engineering
+          consultancy of Andrew Riefenstahl. I build and improve software for
+          organizations as a contract engineer, a technical consultant, or an
+          embedded senior contributor.
         </p>
         <p>
-          My background spans full-stack application development, backend and API
-          architecture, authentication and integrations, cloud infrastructure, and
-          AI-enabled applications. I have worked on an AI agent workflow platform
-          (Flockx), enterprise web systems, nonprofit platforms, and open-source
-          developer tooling, and I co-founded a worker-owned technology
-          cooperative.
+          I have worked on an AI agent workflow platform (Flockx), enterprise web
+          systems, nonprofit platforms, and open-source developer tooling, and I
+          co-founded a worker-owned technology cooperative.
         </p>
         <p>
           The through-line is systems thinking: understanding how data, services,
-          people, and constraints fit together, and building software that reduces
-          friction instead of adding to it. I care about performance, reliability,
-          accessibility, and the developer experience of the next person who opens
-          the code.
+          people, and constraints fit together. I care about performance,
+          reliability, accessibility, and maintainability.
         </p>
         <p>
-          I am a senior software engineer operating across architecture,
-          delivery, and technical leadership. {site.availability}
+          I am a senior software engineer working across architecture, delivery,
+          and technical leadership.
         </p>
         <div class="flex flex-wrap items-center gap-3 pt-2">
           <Button
