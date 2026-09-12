@@ -2,6 +2,7 @@
 import "@/styles/starwind.css";
 import { Button } from "@/components/starwind/button";
 import MobileNav from "@/components/MobileNav.astro";
+import Analytics from "@/components/Analytics.astro";
 import { ClientRouter } from "astro:transitions";
 import { Image } from "astro:assets";
 import logoMark from "@/assets/logo-mark.png";
@@ -125,6 +126,7 @@ const structuredDataItems = [
     />
 
     <ClientRouter />
+    <Analytics />
   </head>
   <body class="min-h-screen flex flex-col bg-background text-foreground">
     <a

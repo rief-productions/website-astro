@@ -1,0 +1,31 @@
+---
+import { site } from "@/lib/site";
+
+interface Props {
+  id?: string;
+}
+
+// The measurement ID is public, so it defaults to the value in site.ts.
+// PUBLIC_GA_ID can override it per environment if that is ever useful.
+const { id = (import.meta.env.PUBLIC_GA_ID as string | undefined) ?? site.analyticsId } =
+  Astro.props;
+
+// Only load analytics in production builds so dev/preview traffic stays clean.
+const enabled = Boolean(id) && import.meta.env.PROD;
+
+const src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+// ClientRouter does client-side navigation, so send page views manually on
+// every `astro:page-load` (which fires on the initial load and after each
+// navigation) and disable the default single page view from `config`.
+const config = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}',{send_page_view:false});document.addEventListener('astro:page-load',function(){gtag('event','page_view',{page_location:location.href,page_path:location.pathname});});`;
+---
+
+{
+  enabled && (
+    <>
+      <link rel="preconnect" href="https://www.googletagmanager.com" />
+      <script is:inline async src={src} />
+      <script is:inline set:html={config} />
+    </>
+  )
+}

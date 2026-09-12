@@ -6,6 +6,9 @@ export const site = {
   description:
     "Senior software engineering and technology consulting for full-stack applications, backend systems, APIs, AI workflows, automation, and scalable architecture.",
   ogImage: "/og-image.png",
+  // GA4 measurement ID. Public by design (it ships in the page source), so no
+  // env var is required. Override with PUBLIC_GA_ID if ever needed.
+  analyticsId: "G-9MV375RHQC",
   email: "hello@riefproductions.com",
   location: "United States",
   availability:
